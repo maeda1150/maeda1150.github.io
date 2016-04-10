@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: jade | NO TECHNOLOGY, NO LIFE.]]></title>
+  <link href="http://http://blog.no-technology-no-life.com/blog/categories/jade/atom.xml" rel="self"/>
+  <link href="http://http://blog.no-technology-no-life.com/"/>
+  <updated>2016-04-10T12:40:10+00:00</updated>
+  <id>http://http://blog.no-technology-no-life.com/</id>
+  <author>
+    <name><![CDATA[masaki maeda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[JadeでスマホかタブレットかPCかなどを判定する]]></title>
+    <link href="http://http://blog.no-technology-no-life.com/blog/2015/01/02/javascript-at-jade/"/>
+    <updated>2015-01-02T16:27:11+00:00</updated>
+    <id>http://http://blog.no-technology-no-life.com/blog/2015/01/02/javascript-at-jade</id>
+    <content type="html"><![CDATA[<p>Androidアプリの改修をぼちぼちやり始めていますが、ちょっと煮詰まってきたので気分を変えて、先日リリースした<a href="http://www.no-technology-no-life.com/index.html">Webサイト</a>でちょっと詰まったところをメモっておきます。</p>
+
+<p>サイトの中で、ユーザーがスマホかPCかで判定をして高さを調整する、というロジックを実装しました。</p>
+
+<!--more-->
+
+
+<p><a href="http://bootflat.github.io/">Bootflat</a><a href="http://getbootstrap.com/">(Bootstrap)</a>は、幅の調整は簡単ですが、高さの調整がちょっと見つからなかったので、生JavaScriptでゴリゴリ書いてしまいました。<br/>
+もし<a href="http://bootflat.github.io/">Bootflat</a><a href="http://getbootstrap.com/">(Bootstrap)</a>を使ってスマートにやる方法があったら誰か教えて下さい。。</p>
+
+<hr />
+
+<p>で、HTMLのテンプレートは<a href="http://jade-lang.com/">Jade</a>を使っているのですが、Jade内でJavaScriptが書けるので、そこに書いちゃえ、ということで下記サイトを参考に(すみません、まるまるコピペです。。)、最初以下のように実装しました。</p>
+
+<p>参考サイト : <a href="http://qiita.com/Evolutor_web/items/655c6402aece800fd081">JavaScriptでスマホかタブレットかその他かを返す</a></p>
+
+<pre><code class="jade _js/device_info.jade">script.
+  var getDevice = function(){
+      var ua = navigator.userAgent;
+      if(ua.indexOf('iPhone') &gt; 0 || ua.indexOf('iPod') &gt; 0 || ua.indexOf('Android') &gt; 0 &amp;&amp; ua.indexOf('Mobile') &gt; 0){
+          return 'sp';
+      }else if(ua.indexOf('iPad') &gt; 0 || ua.indexOf('Android') &gt; 0){
+          return 'tab';
+      }else{
+          return 'other';
+      }
+  }();
+</code></pre>
+
+<pre><code class="jade index.jade">include _js/device_info
+
+~省略
+
+ - var dh = (getDevice == 'sp') ? 100 : 230;
+
+ h1(style='text-align:center;margin-top:#{dh}px;margin-bottom:#{dh}px;') Technology with your life.
+
+~省略
+</code></pre>
+
+<p>やりたいことは、スマホの時はマージンを100pxに、それ以外の時は230pxにするという処理です。<br/>
+getDeviceで判定して、マージンをセットするだけ。<br/>
+しかし、getDeviceがundefinedになる。</p>
+
+<hr />
+
+<p>これは大きな勘違いだったのですが、JadeでのJavaScriptの書き方は2通りあります。</p>
+
+<pre><code class="jade example.jade">script.
+  JavaScriptのコード
+</code></pre>
+
+<pre><code class="jade example.jade">- JavaScriptのコード
+</code></pre>
+
+<p>前者はJavaScriptコードがHTMLファイルに吐き出される。<br/>
+後者はJadeをコンパイルする時にだけ実行され、HTMLファイルには吐き出されない。<br/>
+後者はすごく便利なのですが、混在する時は気を付けなければなりません。</p>
+
+<p>結論としては、以下のように実装いたしました。</p>
+
+<pre><code class="jade index.jade">include _js/device_info
+
+~省略
+
+  script.
+    var dh = 0;
+    if(getDevice == 'sp'){
+      dh = 100;
+    }else{
+      dh = 230;
+    }
+    document.write('&lt;h1 style=\'text-align:center;margin-top:' + dh + 'px;margin-bottom:' + dh + 'px;\'&gt;Technology with your life.&lt;/h1&gt;');
+
+~省略
+</code></pre>
+
+<p>document.writeで書き出すあたりがイケてないですが、やむを得ませんでした。<br/>
+以上です！</p>
+]]></content>
+  </entry>
+  
+</feed>

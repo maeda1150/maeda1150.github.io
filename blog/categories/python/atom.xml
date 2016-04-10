@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python, | NO TECHNOLOGY, NO LIFE.]]></title>
+  <link href="http://http://blog.no-technology-no-life.com/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://http://blog.no-technology-no-life.com/"/>
+  <updated>2016-04-10T12:40:10+00:00</updated>
+  <id>http://http://blog.no-technology-no-life.com/</id>
+  <author>
+    <name><![CDATA[masaki maeda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[TED動画をダウンロードして日本語・英語の字幕を付けるスクリプトを作った]]></title>
+    <link href="http://http://blog.no-technology-no-life.com/blog/2015/11/02/translated-ted/"/>
+    <updated>2015-11-02T12:10:45+00:00</updated>
+    <id>http://http://blog.no-technology-no-life.com/blog/2015/11/02/translated-ted</id>
+    <content type="html"><![CDATA[<p>気が付いたらもう11月。<br/>
+<a href="http://maeda1150.github.io/blog/2015/01/01/decide-the-goal/">目標の達成</a>は厳しいなぁ。。</p>
+
+<p>英語の勉強の為にTEDを見ていたのですが、日本語と英語の字幕が同時に表示されているといいな、とふと思い、<strong>動画をダウンロードして英語・日本語の字幕をくっつけるscript</strong>を書いてみた。<br/>
+<a href="https://github.com/maeda1150/download_translated_TED">download_translated_TED</a></p>
+
+<!--more-->
+
+
+<p>こちらのサイトを参考にさせて頂いた。<br/>
+<a href="http://avaveo.blogspot.jp/2010/06/ted.html">日本語字幕付きのTED動画をつくる</a></p>
+
+<p>ちょっと動かない箇所などや、字幕の調整をした。<br/>
+使い方はgithubのページを見ていただいたら分かるかと思います。</p>
+
+<p>ところで、<strong>mplayer</strong>という動画や音楽の再生や加工が出来るソフトがインストールされていることを今回のことで知った。<br/>
+macならデフォルトで<strong>mplayer</strong>が入っているのだろうか？<br/>
+自分の環境では多分元から入っていたと思うのだが定かではない。</p>
+
+<p><strong>mplayer</strong>は非常に便利。<br/>
+<strong>QuickTimeplayer</strong>はプレイリストが作れないみたいだし、<strong>iTunese</strong>は重いし、プレイリストを作るのも面倒くさい。</p>
+
+<p>下記のようなスクリプトをどこかにメモっておいて、
+<code>
+while [ true ]
+do
+  for file in "./*"
+  do
+    mplayer ${file}
+  done
+done
+</code>
+<code>vim</code>で開いてYankして、自分が作ったプレイリストのディレクトリに行き、ペーストするだけ。<br/>
+プレイリストを変えたい時はディレクトリ内の音楽を入れ替えるだけだし、もう音楽を聞く為に<strong>QuickTimeplayer</strong>や<strong>iTunese</strong>を開くことは無いだろう。</p>
+
+<p>良かった良かった。</p>
+]]></content>
+  </entry>
+  
+</feed>

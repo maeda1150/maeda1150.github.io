@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: website | NO TECHNOLOGY, NO LIFE.]]></title>
+  <link href="http://http://blog.no-technology-no-life.com/blog/categories/website/atom.xml" rel="self"/>
+  <link href="http://http://blog.no-technology-no-life.com/"/>
+  <updated>2016-04-10T12:40:10+00:00</updated>
+  <id>http://http://blog.no-technology-no-life.com/</id>
+  <author>
+    <name><![CDATA[masaki maeda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Deploy static Web Site]]></title>
+    <link href="http://http://blog.no-technology-no-life.com/blog/2014/12/31/website/"/>
+    <updated>2014-12-31T10:15:48+00:00</updated>
+    <id>http://http://blog.no-technology-no-life.com/blog/2014/12/31/website</id>
+    <content type="html"><![CDATA[<p>WebSiteを作りました。<br/>
+<a href="http://no-technology-no-life.com/">no-technology-no-life.com</a></p>
+
+<p>主にスマートフォンアプリケーションの紹介ページです。<br/>
+とりあわずガワだけなので、今後改善していきます、気が向いた時に。<br/>
+色々迷いましたが、HTML、CSS、JavaScriptだけの静的なページとしました。</p>
+
+<!--more-->
+
+
+<h3>構成</h3>
+
+<ul>
+<li>ベースデザイン・・・<a href="http://bootflat.github.io/index.html">Bootflat</a></li>
+<li>管理ツール・・・<a href="http://gulpjs.com/">gulp</a></li>
+<li>HTMLテンプレート・・・<a href="http://jade-lang.com/">Jade</a></li>
+<li>CSSテンプレート・・・<a href="http://sass-lang.com/">SCSS</a></li>
+<li>JavaScriptテンプレート・・・<a href="http://coffeescript.org/">CoffeeScript</a></li>
+<li>デプロイ先・・・<a href="https://www.heroku.com/">Heroku</a></li>
+<li>ドメイン・・・<a href="http://muumuu-domain.com/">ムームードメイン</a> ※ <a href="http://aws.amazon.com/jp/">AWS</a>のRoute53でドメイン管理</li>
+</ul>
+
+
+<h4>Gulp</h4>
+
+<p>今回<a href="http://gulpjs.com/">gulp</a>を勉強して使ってみましたが、素晴らしいですね。<br/>
+<a href="http://gruntjs.com/">Grunt</a>のほうは使ったことが無いので分からないですが、タスクの登録などが分かりやすいと思いました。</p>
+
+<p>お世話になったサイト</p>
+
+<ul>
+<li><a href="http://dotinstall.com/lessons/basic_gulp">ドットインストール gulp入門(全12回)</a></li>
+<li><a href="http://whiskers.nukos.kitchen/2014/12/01/gulp.html">whiskers これから始めるGulp</a></li>
+<li><a href="http://dev.classmethod.jp/client-side/javascript/gulp-js-task-files/">Gulp.js タスク単位のファイル分割</a></li>
+</ul>
+
+
+<h4>Jade</h4>
+
+<p><a href="http://jade-lang.com/">Jade</a>、いいですね。<br/>
+テンプレートを使いまわせるので、すごくキレイに書けると思います。<br/>
+メンテナンスが捗りそうです。<br/>
+for文やcase文も書けるし、JavaScriptファイルが要らないですねぇ。<br/>
+<a href="http://bootflat.github.io/index.html">Bootflat</a>のテンプレートを、使いたいところだけ変換しながらコード実装。</p>
+
+<p>お世話になったサイト</p>
+
+<ul>
+<li><a href="https://gist.github.com/japboy/5402844">Jade FTW</a></li>
+<li><a href="http://qiita.com/gonshi_com/items/5a23bc9c8e44a0552969">Jade内で書かれるJavascriptは、htmlに出力されないので便利</a></li>
+<li><a href="http://naltatis.github.io/jade-syntax-docs/">Jade Syntax Documentation</a></li>
+</ul>
+
+
+<h4>Heroku, Route53</h4>
+
+<p>デプロイ先は<a href="https://www.heroku.com/">Heroku</a>にしました。<br/>
+Regionがアメリカなので、やはりちょっとレイテンシがかかっているような気がします。<br/>
+Herokuを使うのが初めてだったので知らなかったのですが、独自ドメインの設定が難しいとのこと。<br/>
+固定IPが取得出来ないためらしい。<br/>
+Heroku内を探したら、アドオンでIPアドレスが取得出来そうだったけど、有料だったのでそれはちょっとな〜、て感じ。<br/>
+<a href="http://aws.amazon.com/jp/">AWS</a>のS3にしようかとも思いましたが、良いサイトが見つかったので、まったくその通りにやったら出来ました。<br/>
+本当に感謝です&lt;(_ _)></p>
+
+<ul>
+<li><a href="http://kayakuguri.github.io/blog/2014/07/07/heroku-set-domain/">Herokuで独自ドメインをRoute53で設定する</a></li>
+</ul>
+
+
+<p>また、Herokuにデプロイしたアプリケーションは、Apacheなどのサーバーソフト上で動いているので、index.phpなどを置いてやらなければならない。<br/>
+Herokuのデベロッパーコンソールでアプリケーションの種類を設定できるが、index.phpを一緒に上げてやれば、自動的にPHPアプリケーションとして設定されるようです。</p>
+
+<ul>
+<li><a href="http://d.hatena.ne.jp/softsama/20120715/1342373494">herokuにただのWebページを乗せてみる</a></li>
+</ul>
+
+
+<p>以下のPHPファイルをカレントディレクトリに置いて、index.htmlにリダイレクトした。</p>
+
+<pre><code class="php index.php">&lt;?php
+  header('location: index.html');
+  exit();
+?&gt;
+</code></pre>
+
+<p>AWSでもリダイレクトしてるし、なんかリダイレクトだらけなので微妙ですかね(笑)。<br/>
+urlの後ろに/index.htmlを付けてアクセスしてもらってもいいですが、せっかくなので無しでもアクセス出来たほうがいいかなと。</p>
+]]></content>
+  </entry>
+  
+</feed>
